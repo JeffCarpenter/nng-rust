@@ -26,8 +26,8 @@ jobs:
       run: cargo fmt --all --check
     - name: Build
       run:
-        cargo build --all --all-targets
-        cargo build --all --features "build-bindgen no_std" --all-targets
-        cargo build --features source-update-bindings
+        cargo build --all --all-targets;
+        cargo build --all --features "build-bindgen no_std" --all-targets;
+        cargo build --features source-update-bindings;
     - name: Run tests
       run: cargo test --verbose
