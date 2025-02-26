@@ -19,11 +19,11 @@ jobs:
     steps:
     - name: Install rustfmt
       run: rustup component add rustfmt
-    - name: rust fmt
-      run: cargo fmt --all --check
     - uses: actions/checkout@v4
       with:
         submodules: 'true'
+    - name: rust fmt
+      run: cargo fmt --all --check
     - name: Build
       run:
         cargo build --all --all-targets
