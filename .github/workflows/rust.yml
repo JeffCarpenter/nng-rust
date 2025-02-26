@@ -1,0 +1,31 @@
+name: Rust
+
+on:
+  push:
+    branches: [ "master" ]
+  pull_request:
+    branches: [ "master" ]
+  workflow_dispatch:
+
+env:
+  CARGO_TERM_COLOR: always
+  RUST_BACKTRACE: 1
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Install rustfmt
+      run: rustup component add rustfmt
+    - name: rust fmt
+      run: cargo fmt --all -- --check
+    - uses: actions/checkout@v4
+    - name: Build
+      run:
+        cargo build --all --all-targets
+        cargo build --all --features "build-bindgen no_std" --all-targets
+        cargo build --features source-update-bindings
+    - name: Run tests
+      run: cargo test --verbose
