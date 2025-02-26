@@ -22,6 +22,8 @@ jobs:
     - name: rust fmt
       run: cargo fmt --all --check
     - uses: actions/checkout@v4
+      with:
+        submodules: 'true'
     - name: Build
       run:
         cargo build --all --all-targets
